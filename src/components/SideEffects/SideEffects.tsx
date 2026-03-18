@@ -6,13 +6,15 @@ export default function SideEffects() {
     const [count, setCount] = useState(1);
  
     useEffect(() => {
-	  console.log('Effect ran!');
-     axios
-      .get(`https://swapi.info/api/people/${count}`)
-      .then((response) => setPerson(response.data.name));
+        async function fetchCharacher() {
+            const responce = await axios.get(`https://swapi.info/api/people/${count}`);
+            setPerson(responce.data);
+        }
+        //!Обязательно вызвать функцию внутри эффекта, иначе она не будет работать
+        fetchCharacher();
     }, [count]);
 
-     console.log('App rendred!');
+     console.log(person);
 
   return (
       <>
