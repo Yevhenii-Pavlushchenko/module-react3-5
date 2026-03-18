@@ -8,16 +8,21 @@ import { fetchArticles } from "../services/articleService";
 import { useState, } from "react";
 
 import SearchForm from "./SearchForm/SearchForm";
+import Modal from "./Modal/Modal";
 // import OrderForm from "./OrderForm/OrderForm";
 // import SideEffects from "./SideEffects/SideEffects";
-import Timer from "./ClearEffects/ClearEffects";
+// import Timer from "./ClearEffects/ClearEffects";
 
 function App() {
   //!States
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  //!Modal
   const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
 
   //!env
@@ -51,11 +56,19 @@ function App() {
       {articles.length > 0 && <ArticleList hits={articles} />}
 
       {/* <OrderForm /> */}
+
       {/* <SideEffects /> */}
-      <button onClick={() => setIsOpen(!isOpen)}>
+
+      {/* <button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? "Hide Timer" : "Show Timer"}
       </button>
-      {isOpen && <Timer />}
+      {isOpen && <Timer />} */}
+
+       <div>
+        <h1>Main content of the page</h1>
+        <button onClick={openModal}>Open Modal</button>
+        {isOpen &&  <Modal onClose={closeModal} />}
+    </div>
     </>
   );
 }
