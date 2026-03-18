@@ -9,8 +9,10 @@ import { useState, } from "react";
 
 import SearchForm from "./SearchForm/SearchForm";
 import Modal from "./Modal/Modal";
-// import OrderForm from "./OrderForm/OrderForm";
+import SomeUseEffects from "./SomeUseEffects/SomeUseEffects";
+// import LocalStorageBtn from "./LocalStorageBtn/LocalStorageBtn";
 // import SideEffects from "./SideEffects/SideEffects";
+// import OrderForm from "./OrderForm/OrderForm";
 // import Timer from "./ClearEffects/ClearEffects";
 
 function App() {
@@ -65,10 +67,19 @@ function App() {
       {isOpen && <Timer />} */}
 
        <div>
-        <h1>Main content of the page</h1>
+        <h2>тут будет модалка</h2>
         <button onClick={openModal}>Open Modal</button>
         {isOpen &&  <Modal onClose={closeModal} />}
-    </div>
+      </div>
+
+      {/* <div>
+        <h2>Local Storage Button</h2>
+      <LocalStorageBtn/>
+      </div> */}
+
+      <div>
+        <SomeUseEffects/>
+      </div>
     </>
   );
 }

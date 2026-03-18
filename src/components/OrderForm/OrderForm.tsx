@@ -34,13 +34,14 @@ export default function OrderForm() {
 
       {/* Input  */}
       <label className={css["form-label"]} htmlFor={nameId}>
-        Text field label
+        Name
       </label>
       <input
         className={css["form-input"]}
         type="text"
         id={nameId}
         name="username"
+        placeholder="Enter your name"
       />
 
       <label className={css["form-label"]} htmlFor={emailId}>
@@ -51,6 +52,7 @@ export default function OrderForm() {
         type="email"
         id={emailId}
         name="email"
+        placeholder="Enter your email"
       />
 
       {/* Radio */}
