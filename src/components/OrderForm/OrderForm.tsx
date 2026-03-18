@@ -1,21 +1,23 @@
+import { useId } from "react";
+import css from "./OrderForm.module.css";
 
-interface OrderFormProps {
-    onSubmit: (value: string) => void
-}
-
-export default function OrderForm({ onSubmit }: OrderFormProps) {
-    
-    const handleSubmit = (formData: FormData) => {
-    const username = formData.get('username') as string
-    
-    onSubmit(username)
-        
-    console.log('Name:', username)
-    }
+export default function OrderForm() {
+    //!hooks
+    const nameId = useId();
+    const emailId = useId();
     return (
-        <form action={handleSubmit}>
-        <input type="text" name="username" placeholder={"Enter your name"}/>
-        <button type="submit">Submit</button>
-      </form>
-    )
+        <>
+        <form className={css["order-form"]} >
+            <h2 className={css["form-title"]}>Хук useId</h2>
+
+      <label className={css["form-label"]} htmlFor={nameId}>Text field label</label>
+            <input className={css["form-input"]} type="text" id={nameId} />
+      <label className={css["form-label"]} htmlFor={emailId}>Email</label>
+        <input className={css["form-input"]} type="email" id={emailId} />
+      
+        <button  className={css["form-button"]}type="submit">Place Order</button>
+    </form>
+        </>
+          
+  );
 }
