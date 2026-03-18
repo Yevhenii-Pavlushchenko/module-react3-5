@@ -4,21 +4,25 @@ import css from "./OrderForm.module.css";
 export default function OrderForm() {
   const nameId = useId();
   const emailId = useId();
+  const selectId = useId();
 
   // Один общий обработчик
   const handleFormSubmit = (formData: FormData) => {
-    // достаю значение из каждого поля 
+    // достаю значение из каждого поля
     const name = formData.get("username");
     const email = formData.get("email");
     const delivery = formData.get("delivery");
     //!тут getall, так как может быть несколько чекбоксов
     const restrictions = formData.getAll("restrictions");
+    const deliveryTime = formData.get("deliveryTime") as string;
+
     // Собираю всё в один объект
     const finalData = {
       name,
       email,
       delivery,
       restrictions,
+      deliveryTime,
     };
 
     console.log("All Form Data:", finalData);
@@ -29,14 +33,28 @@ export default function OrderForm() {
       <h2 className={css["form-title"]}>Хук useId</h2>
 
       {/* Input  */}
-      <label className={css["form-label"]} htmlFor={nameId}>Text field label</label>
-      <input className={css["form-input"]} type="text" id={nameId} name="username" />
-      
-      <label className={css["form-label"]} htmlFor={emailId}>Email</label>
-      <input className={css["form-input"]} type="email" id={emailId} name="email" />
+      <label className={css["form-label"]} htmlFor={nameId}>
+        Text field label
+      </label>
+      <input
+        className={css["form-input"]}
+        type="text"
+        id={nameId}
+        name="username"
+      />
+
+      <label className={css["form-label"]} htmlFor={emailId}>
+        Email
+      </label>
+      <input
+        className={css["form-input"]}
+        type="email"
+        id={emailId}
+        name="email"
+      />
 
       {/* Radio */}
-       <fieldset>
+      <fieldset>
         <legend>Delivery method:</legend>
 
         <label>
@@ -52,7 +70,7 @@ export default function OrderForm() {
           Drone delivery
         </label>
       </fieldset>
-            
+
       {/* Checkboxes  */}
       <fieldset>
         <legend>Dietary restrictions:</legend>
@@ -70,8 +88,25 @@ export default function OrderForm() {
         </label>
       </fieldset>
 
-      <button className={css["form-button"]} type="submit">Place Order</button>
+      {/* Selected  */}
+      <div className={css["form-group"]}>
+        <label className={css["form-label"]} htmlFor={selectId}>Preferred delivery time</label>
+        <select 
+          className={css["form-input"]}
+          name="deliveryTime"
+          id={selectId}
+          defaultValue=""
+        >
+          <option value="">-- Choose delivery time --</option>
+          <option value="morning">Morning (8:00–12:00)</option>
+          <option value="afternoon">Afternoon (12:00–16:00)</option>
+          <option value="evening">Evening (16:00–20:00)</option>
+        </select>
+      </div>
+
+      <button className={css["form-button"]} type="submit">
+        Place Order
+      </button>
     </form>
   );
 }
-
