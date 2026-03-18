@@ -8,6 +8,7 @@ import { fetchArticles } from "../services/articleService";
 
 import { useState, } from "react";
 import OrderForm from "./OrderForm/OrderForm";
+import SideEffects from "./SideEffects/SideEffects";
 
 function App() {
   //!States
@@ -45,8 +46,8 @@ function App() {
       {isError && <p>Something went wrong...</p>}
       {articles.length > 0 && <ArticleList hits={articles} />}
 
-    
-      <OrderForm/>
+      <OrderForm />
+      <SideEffects />
     </>
   );
 }
