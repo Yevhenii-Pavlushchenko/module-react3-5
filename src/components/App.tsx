@@ -18,6 +18,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  const myEnv = import.meta.env.VITE_API_KEY;
+  console.log("My env variable:", myEnv);
+
   const handlerSearch = async (topic: string) => {
     try {
       setIsLoading(true);
